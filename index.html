@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Your Name</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+            --bg: #050b16;
+            --ink: #e9edf3;
+            --mute: #a3adba;
+            --line: rgba(255, 255, 255, .16);
+            --acc: #7db8ff;
+            color-scheme: dark
+        }
+
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        * {
+            box-sizing: inherit
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font: 17px/1.6 "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif
+        }
+
+        .atmos {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+            background: radial-gradient(ellipse at 16% 18%, rgba(27, 75, 132, .82) 0%, rgba(20, 54, 99, .48) 24%, transparent 48%), radial-gradient(ellipse at 68% 12%, rgba(14, 91, 119, .64) 0%, rgba(8, 54, 81, .38) 28%, transparent 55%), radial-gradient(ellipse at 88% 78%, rgba(15, 76, 112, .62) 0%, rgba(8, 40, 72, .38) 30%, transparent 56%), radial-gradient(ellipse at 34% 100%, rgba(14, 49, 94, .68) 0%, transparent 52%), #050b16
+        }
+
+        .atmos .rot {
+            display: none
+        }
+
+        .atmos::before {
+            content: "";
+            position: absolute;
+            inset: -8%;
+            z-index: 1;
+            filter: blur(42px);
+            background: radial-gradient(ellipse at 50% 42%, transparent 20%, rgba(2, 6, 15, .38) 100%)
+        }
+
+        .atmos::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            opacity: .22;
+            mix-blend-mode: overlay;
+            background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 14vh 24px 10vh
+        }
+
+        h1 {
+            font-size: clamp(42px, 9vw, 76px);
+            line-height: 1;
+            font-weight: 500;
+            letter-spacing: -.035em;
+            margin: 0 0 28px
+        }
+
+        .lede {
+            font-size: clamp(20px, 3.2vw, 27px);
+            line-height: 1.35;
+            max-width: 28ch;
+            margin: 0
+        }
+
+        .about {
+            margin: 72px 0 80px;
+            max-width: 58ch;
+            color: var(--mute)
+        }
+
+        h2 {
+            font-size: 15px;
+            font-weight: 500;
+            color: var(--mute);
+            margin: 0 0 36px
+        }
+
+        .work {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 88px
+        }
+
+        .work::before {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 6px;
+            bottom: 44px;
+            width: 1px;
+            background: var(--line)
+        }
+
+        .proj {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 180px;
+            gap: 10px 32px;
+            align-items: center;
+            padding-bottom: 48px
+        }
+
+        .proj:last-child {
+            padding-bottom: 0
+        }
+
+        .proj::before {
+            content: "";
+            position: absolute;
+            left: -32px;
+            top: 9px;
+            width: 9px;
+            height: 9px;
+            border: 1px solid var(--ink);
+            background: var(--bg);
+            transition: background .2s, border-color .2s
+        }
+
+        .proj:hover::before,
+        .proj:focus-within::before {
+            background: var(--acc);
+            border-color: var(--acc)
+        }
+
+        h3 {
+            margin: 0;
+            font-size: 21px;
+            font-weight: 500;
+            letter-spacing: -.01em
+        }
+
+        .proj p {
+            margin: 4px 0 0;
+            color: var(--mute);
+            font-size: 16px;
+            max-width: 44ch
+        }
+
+        .proj .meta {
+            font-size: 14px;
+            margin-top: 8px
+        }
+
+        canvas {
+            width: 180px;
+            height: 56px;
+            display: block
+        }
+
+        a {
+            color: inherit;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px
+        }
+
+        a:hover {
+            color: var(--acc)
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--acc);
+            outline-offset: 3px;
+            border-radius: 2px
+        }
+
+        footer p {
+            margin: 0 0 6px;
+            color: var(--mute)
+        }
+
+        footer a {
+            margin-right: 20px;
+            color: var(--ink)
+        }
+
+        @media(max-width:560px) {
+            .proj {
+                grid-template-columns: 1fr
+            }
+
+            canvas {
+                margin-top: 6px
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Your Name</h1>
+            <p class="lede">I write software, and I’m teaching myself to build the hardware it runs on.</p>
+        </header>
+
+        <p class="about">I have a computer science degree and spend my evenings at a bench with a multimeter. I like the
+            layer where code meets physics: timing, noise, and the things a datasheet doesn’t tell you.</p>
+
+        <section class="work" aria-labelledby="w">
+            <h2 id="w">Projects</h2>
+            <article class="proj">
+                <div>
+                    <h3><a href="#">555 blinker</a></h3>
+                    <p>An astable oscillator with an adjustable duty cycle, checked against my own timing equations on
+                        an oscilloscope.</p>
+                    <p class="meta">NE555, breadboard, oscilloscope</p>
+                </div><canvas aria-hidden="true"></canvas>
+            </article>
+
+            <article class="proj">
+                <div>
+                    <h3><a href="#">RC low-pass filter</a></h3>
+                    <p>A first-order filter with a cutoff near 1 kHz. I swept the input frequency and compared the
+                        measured roll-off to the theory.</p>
+                    <p class="meta">Passive filters, function generator</p>
+                </div><canvas aria-hidden="true"></canvas>
+            </article>
+
+            <article class="proj">
+                <div>
+                    <h3><a href="#">Crosswalk controller</a></h3>
+                    <p>A traffic-light state machine on an ATmega328P, with a debounced pedestrian button handled by an
+                        interrupt.</p>
+                    <p class="meta">C, ATmega328P, state machines</p>
+                </div><canvas aria-hidden="true"></canvas>
+            </article>
+
+            <article class="proj">
+                <div>
+                    <h3><a href="#">Night light</a></h3>
+                    <p>A light sensor and a transistor that switch an LED on when the room gets dark.</p>
+                    <p class="meta">LDR, BC547, voltage divider</p>
+                </div><canvas aria-hidden="true"></canvas>
+            </article>
+        </section>
+
+        <footer>
+            <h2>Contact</h2>
+            <p><a href="mailto:you@example.com">you@example.com</a><a href="https://github.com/yourname">GitHub</a><a
+                    href="https://linkedin.com/in/yourname">LinkedIn</a></p>
+        </footer>
+    </main>
+    <script>
+        {
+            const a = document.createElement('div'); a.className = 'atmos'; a.setAttribute('aria-hidden', 'true');
+            const r = document.createElement('div'); r.className = 'rot'; r.style.transform = `rotate(${Math.random() * 360}deg)`; const hues = [198, 206, 213, 220, 227, 233, 190], N = 'http://www.w3.org/2000/svg', s = document.createElementNS(N, 'svg'), df = document.createElementNS(N, 'defs'), R = (lo, hi) => lo + Math.random() * (hi - lo), amp = R(18, 40) * (Math.random() < .5 ? -1 : 1), sk = R(-15, 15); s.setAttribute('viewBox', '0 0 100 100'); s.setAttribute('width', '100%'); s.setAttribute('height', '100%'); s.appendChild(df);
+            for (let k = 0; k < 11; k++) {
+                const y0 = 8 + k * 8.4 + R(-4, 4), j = R(.6, 1.4), p = document.createElementNS(N, 'path'), g = document.createElementNS(N, 'linearGradient'), hp = () => hues[Math.floor(Math.random() * hues.length)];
+                g.id = 'g' + k;['x1', 'y1', 'x2', 'y2'].forEach(n => g.setAttribute(n, R(0, 1)));[0, .5, 1].forEach(o => { const st = document.createElementNS(N, 'stop'); st.setAttribute('offset', o); st.setAttribute('stop-color', `hsl(${hp()} ${R(50, 75)}% ${R(26, 44)}%)`); g.appendChild(st) }); df.appendChild(g);
+                p.setAttribute('d', `M -15 ${y0 + sk} C 25 ${y0 + amp * j} 65 ${y0 - amp * j} 115 ${y0 - sk}`); p.setAttribute('fill', 'none'); p.setAttribute('stroke', 'url(#g' + k + ')'); p.setAttribute('stroke-width', R(7, 15)); p.setAttribute('stroke-linecap', 'round'); p.setAttribute('opacity', R(.35, .85));
+                s.appendChild(p)
+            } r.appendChild(s);
+
+
+
+
+            a.appendChild(r); document.body.prepend(a)
+        }
+        const TAU = Math.PI * 2, fr = v => ((v % 1) + 1) % 1, DPR = Math.min(devicePixelRatio || 1, 2), W = 180, H = 56;
+        // One list of lines per project: the last line is drawn in the accent color.
+        const WAVES = [
+            [(x, t) => fr(x * 4 - t * .5) < .35 ? .85 : .15],
+            [(x, t) => .5 + .36 * Math.sin(TAU * (3 * x - t * .5)), (x, t) => .5 + .2 * Math.sin(TAU * (3 * x - t * .5) - 1)],
+            [(x, t) => [.85, .5, .15][Math.floor(fr(x * 1.5 - t * .2) * 3)]],
+            [(x, t) => .5 + .38 * Math.sin(TAU * (x - t * .15)), (x, t) => .5 + .38 * Math.sin(TAU * (x - t * .15)) > .6 ? .88 : .12]];
+        const cs = [...document.querySelectorAll('canvas')];
+        cs.forEach(c => { c.width = W * DPR; c.height = H * DPR });
+        function draw(t) {
+            const st = getComputedStyle(document.documentElement), acc = st.getPropertyValue('--acc'), mu = st.getPropertyValue('--mute'), ln = st.getPropertyValue('--line');
+            cs.forEach((c, i) => {
+                const g = c.getContext('2d'); g.setTransform(DPR, 0, 0, DPR, 0, 0); g.clearRect(0, 0, W, H);
+                g.strokeStyle = ln; g.lineWidth = 1; g.beginPath(); g.moveTo(0, H / 2); g.lineTo(W, H / 2); g.stroke();
+                const ws = WAVES[i]; ws.forEach((f, k) => {
+                    g.strokeStyle = k == ws.length - 1 ? acc : mu; g.globalAlpha = k == ws.length - 1 ? 1 : .55; g.lineWidth = 1.6; g.lineJoin = 'round'; g.beginPath();
+                    for (let s = 0; s <= 120; s++) { const x = s / 120, y = 5 + (1 - f(x, t)) * (H - 10); s ? g.lineTo(x * W, y) : g.moveTo(0, y) } g.stroke(); g.globalAlpha = 1
+                })
+            })
+        }
+        const still = matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if (still) { draw(0); matchMedia('(prefers-color-scheme:dark)').addEventListener('change', () => draw(0)) }
+        else { const loop = n => { draw(n / 1000); requestAnimationFrame(loop) }; requestAnimationFrame(loop) }
+    </script>
+</body>
+
+</html>
