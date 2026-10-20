@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Your Name</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=Syne:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+            --bg: #050b16;
+            --ink: #e9edf3;
+            --mute: #a3adba;
+            --line: rgba(255, 255, 255, .16);
+            --acc: #7db8ff;
+            color-scheme: dark
+        }
+
+
+        html {
+            scroll-padding-top: env(safe-area-inset-top, 0px)
+        }
+
+        * {
+            box-sizing: inherit
+        }
+
+        body {
+            margin: 0;
+            background: var(--bg);
+            color: var(--ink);
+            font: 17px/1.6 "Manrope", system-ui, -apple-system, "Segoe UI", sans-serif
+        }
+
+        .atmos {
+            position: fixed;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+            background: #091a35
+        }
+
+        .atmos canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+            filter: blur(15px) saturate(1.1);
+            transform: scale(1.055)
+        }
+
+        .atmos::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            opacity: .22;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.38'/%3E%3C/svg%3E");
+            mix-blend-mode: screen
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .atmos canvas {
+                filter: blur(15px)
+            }
+        }
+
+        main {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 14vh 24px 10vh
+        }
+
+        h1 {
+            font-family: "Space Grotesk", sans-serif;
+            font-size: clamp(42px, 9vw, 76px);
+            line-height: 1;
+            font-weight: 500;
+            letter-spacing: -.035em;
+            margin: 0 0 28px
+        }
+
+        .lede {
+            font-size: clamp(20px, 3.2vw, 27px);
+            line-height: 1.35;
+            max-width: 28ch;
+            margin: 0
+        }
+
+        .about {
+            margin: 72px 0 80px;
+            max-width: 58ch;
+            color: var(--mute)
+        }
+
+        h2 {
+            font-family: "Manrope", sans-serif;
+            font-size: 19px;
+            font-weight: 500;
+            color: var(--mute);
+            margin: 0 0 36px
+        }
+
+        .work {
+            position: relative;
+            padding-left: 32px;
+            margin-bottom: 88px
+        }
+
+        .work::before {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 6px;
+            bottom: 44px;
+            width: 1px;
+            background: var(--line)
+        }
+
+        .proj {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 180px;
+            gap: 10px 32px;
+            align-items: center;
+            padding-bottom: 48px
+        }
+
+        .proj:last-child {
+            padding-bottom: 0
+        }
+
+        .proj::before {
+            content: "";
+            position: absolute;
+            left: -32px;
+            top: 9px;
+            width: 9px;
+            height: 9px;
+            border: 1px solid var(--ink);
+            background: var(--bg);
+            transition: background .2s, border-color .2s
+        }
+
+        .proj:hover::before,
+        .proj:focus-within::before {
+            background: var(--acc);
+            border-color: var(--acc)
+        }
+
+        h3 {
+            font-family: "Manrope", sans-serif;
+            margin: 0;
+            font-size: 21px;
+            font-weight: 500;
+            letter-spacing: -.01em
+        }
+
+        .proj p {
+            margin: 4px 0 0;
+            color: var(--mute);
+            font-size: 16px;
+            max-width: 44ch
+        }
+
+        .proj .meta {
+            font-size: 14px;
+            margin-top: 8px
+        }
+
+        canvas {
+            width: 180px;
+            height: 56px;
+            display: block
+        }
+
+        a {
+            color: inherit;
+            text-underline-offset: 4px;
+            text-decoration-thickness: 1px
+        }
+
+        a:hover {
+            color: var(--acc)
+        }
+
+        a:focus-visible {
+            outline: 2px solid var(--acc);
+            outline-offset: 3px;
+            border-radius: 2px
+        }
+
+        footer p {
+            margin: 0 0 6px;
+            color: var(--mute)
+        }
+
+        footer a {
+            margin-right: 20px;
+            color: var(--ink)
+        }
+
+        @media(max-width:560px) {
+            .proj {
+                grid-template-columns: 1fr
+            }
+
+            canvas {
+                margin-top: 6px
+            }
+        }
+
+
+        .projects-heading {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 34px
+        }
+
+        .projects-heading h2 {
+            margin: 0
+        }
+
+        .project-tabs {
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            flex-wrap: wrap;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            background: none
+        }
+
+        .project-tab {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            font: 500 17px/1.4 "Manrope", sans-serif;
+            color: #94abc7;
+            background: none;
+            border: 0;
+            border-bottom: 2px solid transparent;
+            border-radius: 0;
+            padding: 0 0 9px;
+            cursor: pointer;
+            transition: color .2s, border-color .2s
+        }
+
+        .project-tab svg {
+            width: 19px;
+            height: 19px;
+            flex: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            fill: none;
+            stroke-linecap: round;
+            stroke-linejoin: round
+        }
+
+        .project-tab:hover {
+            color: #e5f0ff
+        }
+
+        .project-tab[aria-selected="true"] {
+            color: #f3f8ff;
+            border-bottom-color: #8dbbfa
+        }
+
+        .project-tab:focus-visible {
+            outline: 2px solid #a6d0ff;
+            outline-offset: 4px
+        }
+
+        @media(max-width:560px) {
+            .project-tabs {
+                gap: 18px
+            }
+
+            .project-tab {
+                font-size: 15px
+            }
+        }
+
+        .project-panel[hidden] {
+            display: none !important
+        }
+
+        #panel-web .proj,
+        #panel-game .proj {
+            grid-template-columns: 1fr
+        }
+
+        .project-panel {
+            animation: project-in .3s ease both
+        }
+
+        @keyframes project-in {
+            from {
+                opacity: 0;
+                transform: translateY(7px)
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0)
+            }
+        }
+
+        @media(prefers-reduced-motion:reduce) {
+            .project-panel {
+                animation: none
+            }
+
+            .project-tab {
+                transition: none
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Your Name</h1>
+            <p class="lede">I write software, and I’m teaching myself to build the hardware it runs on.</p>
+        </header>
+
+        <p class="about">I have a computer science degree and spend my evenings at a bench with a multimeter. I like the
+            layer where code meets physics: timing, noise, and the things a datasheet doesn’t tell you.</p>
+
+        <section aria-labelledby="w">
+            <div class="projects-heading">
+                <h2 id="w">Projects</h2>
+                <div class="project-tabs" role="tablist" aria-label="Project categories">
+                    <button class="project-tab" type="button" role="tab" id="tab-electronics"
+                        aria-controls="panel-electronics" aria-selected="true" tabindex="0"><svg viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <rect x="4" y="8" width="16" height="12" rx="3" />
+                            <path d="M12 8V4m-2 0h4M9 14h.01M15 14h.01M9 17h6M2 12v4m20-4v4" />
+                        </svg><span>Electronics</span></button>
+                    <button class="project-tab" type="button" role="tab" id="tab-web" aria-controls="panel-web"
+                        aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M3 12h18M12 3c-3 3-4.5 6-4.5 9s1.5 6 4.5 9M12 3c3 3 4.5 6 4.5 9s-1.5 6-4.5 9" />
+                        </svg><span>Web Development</span></button>
+                    <button class="project-tab" type="button" role="tab" id="tab-game" aria-controls="panel-game"
+                        aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M6.5 8h11a4 4 0 0 1 3.9 3.1l1 5a2.5 2.5 0 0 1-4 2.5L16 16H8l-2.4 2.6a2.5 2.5 0 0 1-4-2.5l1-5A4 4 0 0 1 6.5 8Z" />
+                            <path d="M7 11v5m-2.5-2.5h5M16 12h.01M19 14h.01" />
+                        </svg><span>Game Dev</span></button>
+                </div>
+            </div>
+            <div class="work project-panel" id="panel-electronics" role="tabpanel" aria-labelledby="tab-electronics">
+                <article class="proj">
+                    <div>
+                        <h3><a href="#">555 blinker</a></h3>
+                        <p>An astable oscillator with an adjustable duty cycle, checked against my own timing equations
+                            on an oscilloscope.</p>
+                        <p class="meta">NE555, breadboard, oscilloscope</p>
+                    </div><canvas data-wave="0" aria-hidden="true"></canvas>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="#">RC low-pass filter</a></h3>
+                        <p>A first-order filter with a cutoff near 1 kHz. I swept the input frequency and compared the
+                            measured roll-off to the theory.</p>
+                        <p class="meta">Passive filters, function generator</p>
+                    </div><canvas data-wave="1" aria-hidden="true"></canvas>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="#">Crosswalk controller</a></h3>
+                        <p>A traffic-light state machine on an ATmega328P, with a debounced pedestrian button handled by
+                            an interrupt.</p>
+                        <p class="meta">C, ATmega328P, state machines</p>
+                    </div><canvas data-wave="2" aria-hidden="true"></canvas>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="#">Night light</a></h3>
+                        <p>A light sensor and a transistor that switch an LED on when the room gets dark.</p>
+                        <p class="meta">LDR, BC547, voltage divider</p>
+                    </div><canvas data-wave="3" aria-hidden="true"></canvas>
+                </article>
+            </div>
+            <div class="work project-panel" id="panel-web" role="tabpanel" aria-labelledby="tab-web" hidden>
+                <article class="proj">
+                    <div>
+                        <h3><a href="https://github.com/LU347/blue-star-az">Blue Star Mothers</a></h3>
+                        <p>A volunteer and service-member web platform with account roles, inventory, and shipping
+                            workflows.</p>
+                        <p class="meta">Next.js, TypeScript, PostgreSQL, Prisma</p>
+                    </div>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="#">Chef RPG Map</a></h3>
+                        <p>An interactive map project built with a custom image overlay.</p>
+                        <p class="meta">React, Vite, Leaflet</p>
+                    </div>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="#">Botanical Buddies</a></h3>
+                        <p>A collaborative web application project.</p>
+                        <p class="meta">PHP, MySQL, Azure</p>
+                    </div>
+                </article>
+            </div>
+            <div class="work project-panel" id="panel-game" role="tabpanel" aria-labelledby="tab-game" hidden>
+                <article class="proj">
+                    <div>
+                        <h3><a href="https://github.com/LU347/TTR-Beta">Teapot Tycoon</a></h3>
+                        <p>A Roblox tycoon game with player plots, shop systems, and persistent game data.</p>
+                        <p class="meta">Roblox, Luau, DataStore</p>
+                    </div>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="#">Capy & Turtle</a></h3>
+                        <p>A Unity character-controller project with tag-team character switching and a third-person
+                            camera.</p>
+                        <p class="meta">Unity, C#</p>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <footer>
+            <h2>Contact</h2>
+            <p><a href="mailto:you@example.com">you@example.com</a><a href="https://github.com/yourname">GitHub</a><a
+                    href="https://linkedin.com/in/yourname">LinkedIn</a></p>
+        </footer>
+    </main>
+    <script>
+        // Procedural animated gradient: curved S-shaped light bands, with noise
+        // advected ALONG each curve instead of translating the entire background.
+        {
+            const atmosphere = document.createElement('div'); atmosphere.className = 'atmos'; atmosphere.setAttribute('aria-hidden', 'true');
+            const surface = document.createElement('canvas'); surface.setAttribute('aria-hidden', 'true'); atmosphere.appendChild(surface); document.body.prepend(atmosphere);
+            const ctx = surface.getContext('2d', { alpha: false });
+            const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+            const smooth = (a, b, x) => { const q = clamp((x - a) / (b - a)); return q * q * (3 - 2 * q) };
+            const hash = (x, y) => { let z = Math.sin(x * 127.1 + y * 311.7) * 43758.5453; return z - Math.floor(z) };
+            function noise(x, y) { let ix = Math.floor(x), iy = Math.floor(y), fx = x - ix, fy = y - iy; fx = fx * fx * (3 - 2 * fx); fy = fy * fy * (3 - 2 * fy); return (hash(ix, iy) * (1 - fx) + hash(ix + 1, iy) * fx) * (1 - fy) + (hash(ix, iy + 1) * (1 - fx) + hash(ix + 1, iy + 1) * fx) * fy; }
+            let last = 0;
+            function render(ms) {
+                if (!reduce && ms - last < 45) { requestAnimationFrame(render); return } last = ms;
+                const w = Math.min(460, Math.max(280, Math.round(innerWidth / 3))), h = Math.min(350, Math.max(190, Math.round(innerHeight / 3)));
+                if (surface.width !== w || surface.height !== h) { surface.width = w; surface.height = h }
+                const pixels = ctx.createImageData(w, h), d = pixels.data, t = reduce ? 0 : ms * .00012, aspect = innerWidth / innerHeight;
+                for (let j = 0; j < h; j++)for (let i = 0; i < w; i++) {
+                    const x = i / w, y = j / h;
+                    // The S bends from upper center to the right and curls back left.
+                    const center = .52 + .24 * Math.sin(y * 5.5 - 1.15) + .025 * Math.sin(y * 12 + 0.2);
+                    const dx = x - center;
+                    const bend = Math.exp(-Math.pow(dx / .175, 2));
+                    // The left-side stream curls toward the main S-shaped ribbon.
+                    const leftCenter = .08 + .29 * Math.sin(y * 3.4 + .5);
+                    const left = Math.exp(-Math.pow((x - leftCenter) / .23, 2));
+                    // Noise is sampled in curve-following coordinates; time shifts its
+                    // position along the ribbon (y), never sideways across the page.
+                    const n1 = noise(x * 5.8 + dx * 1.2, y * 5.2 - t * 3.0);
+                    const n2 = noise(x * 13 + dx * 2, y * 12 - t * 6.0);
+                    const texture = .65 + .55 * (n1 - .5) + .20 * (n2 - .5);
+                    const ribbon = bend * texture * (.78 + .22 * Math.sin(y * 9 - t * 13 + n1 * 3));
+                    const soft = left * (.50 + .35 * noise(x * 6, y * 6 - t * 2));
+                    const shadow = .10 * Math.sin(x * 8 + y * 4);
+                    const light = clamp(ribbon * .92 + soft * .55 + shadow, 0, 1.2);
+                    const blue = clamp(light);
+                    const teal = clamp(ribbon * .45 + soft * .3);
+                    const grain = (hash(i + Math.floor(t * 900), j + Math.floor(t * 700)) - .5) * 10;
+                    const idx = (j * w + i) * 4;
+                    d[idx] = clamp(10 + blue * 53 + teal * 10 + grain, 0, 255);
+                    d[idx + 1] = clamp(24 + blue * 95 + teal * 26 + grain, 0, 255);
+                    d[idx + 2] = clamp(49 + blue * 115 + teal * 25 + grain, 0, 255);
+                    d[idx + 3] = 255;
+                }
+                ctx.putImageData(pixels, 0, 0);
+                if (!reduce) requestAnimationFrame(render);
+            }
+            requestAnimationFrame(render);
+            window.addEventListener('resize', () => { if (reduce) render(0) }, { passive: true });
+        }
+        const TAU = Math.PI * 2, fr = v => ((v % 1) + 1) % 1, DPR = Math.min(devicePixelRatio || 1, 2), W = 180, H = 56;
+        // One list of lines per project: the last line is drawn in the accent color.
+        const WAVES = [
+            [(x, t) => fr(x * 4 - t * .5) < .35 ? .85 : .15],
+            [(x, t) => .5 + .36 * Math.sin(TAU * (3 * x - t * .5)), (x, t) => .5 + .2 * Math.sin(TAU * (3 * x - t * .5) - 1)],
+            [(x, t) => [.85, .5, .15][Math.floor(fr(x * 1.5 - t * .2) * 3)]],
+            [(x, t) => .5 + .38 * Math.sin(TAU * (x - t * .15)), (x, t) => .5 + .38 * Math.sin(TAU * (x - t * .15)) > .6 ? .88 : .12]];
+        const cs = [...document.querySelectorAll('.proj canvas')];
+        cs.forEach(c => { c.width = W * DPR; c.height = H * DPR });
+        function draw(t) {
+            const st = getComputedStyle(document.documentElement), acc = st.getPropertyValue('--acc'), mu = st.getPropertyValue('--mute'), ln = st.getPropertyValue('--line');
+            cs.forEach((c, i) => {
+                const g = c.getContext('2d'); g.setTransform(DPR, 0, 0, DPR, 0, 0); g.clearRect(0, 0, W, H);
+                g.strokeStyle = ln; g.lineWidth = 1; g.beginPath(); g.moveTo(0, H / 2); g.lineTo(W, H / 2); g.stroke();
+                const ws = WAVES[Number(c.dataset.wave) || 0]; if (!ws) return; ws.forEach((f, k) => {
+                    g.strokeStyle = k == ws.length - 1 ? acc : mu; g.globalAlpha = k == ws.length - 1 ? 1 : .55; g.lineWidth = 1.6; g.lineJoin = 'round'; g.beginPath();
+                    for (let s = 0; s <= 120; s++) { const x = s / 120, y = 5 + (1 - f(x, t)) * (H - 10); s ? g.lineTo(x * W, y) : g.moveTo(0, y) } g.stroke(); g.globalAlpha = 1
+                })
+            })
+        }
+        // Accessible project category tabs; canvases are independent of selected category.
+        const tabs = [...document.querySelectorAll('.project-tab')];
+        function selectProjectTab(tab, focus = false) {
+            tabs.forEach(t => {
+                const active = t === tab;
+                t.setAttribute('aria-selected', String(active));
+                t.tabIndex = active ? 0 : -1;
+                document.getElementById(t.getAttribute('aria-controls')).hidden = !active;
+            });
+            if (focus) tab.focus();
+        }
+        tabs.forEach((tab, index) => {
+            tab.addEventListener('click', () => selectProjectTab(tab));
+            tab.addEventListener('keydown', e => {
+                if (!['ArrowRight', 'ArrowLeft', 'Home', 'End'].includes(e.key)) return;
+                e.preventDefault();
+                const next = e.key === 'Home' ? 0 : e.key === 'End' ? tabs.length - 1 : (index + (e.key === 'ArrowRight' ? 1 : -1) + tabs.length) % tabs.length;
+                selectProjectTab(tabs[next], true);
+            });
+        });
+        const still = matchMedia('(prefers-reduced-motion:reduce)').matches;
+        if (still) { draw(0); matchMedia('(prefers-color-scheme:dark)').addEventListener('change', () => draw(0)) }
+        else { const loop = n => { draw(n / 1000); requestAnimationFrame(loop) }; requestAnimationFrame(loop) }
+    </script>
+</body>
+
+</html>
