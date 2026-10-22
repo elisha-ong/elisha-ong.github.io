@@ -12,6 +12,7 @@
         rel="stylesheet">
     <link rel="stylesheet" href="index.css">
 </head>
+
 <body>
     <main>
         <header>
@@ -46,7 +47,7 @@
                 </div>
             </div>
             <div class="work project-panel" id="panel-electronics" role="tabpanel" aria-labelledby="tab-electronics">
-                <article class="proj">
+                <article style="display: none;" class="proj" id="proj-template">
                     <div>
                         <h3><a href="#">555 blinker</a></h3>
                         <p>An astable oscillator with an adjustable duty cycle, checked against my own timing equations
@@ -56,47 +57,25 @@
                 </article>
                 <article class="proj">
                     <div>
-                        <h3><a href="#">RC low-pass filter</a></h3>
-                        <p>A first-order filter with a cutoff near 1 kHz. I swept the input frequency and compared the
-                            measured roll-off to the theory.</p>
-                        <p class="meta">Passive filters, function generator</p>
-                    </div><canvas data-wave="1" aria-hidden="true"></canvas>
-                </article>
-                <article class="proj">
-                    <div>
-                        <h3><a href="#">Crosswalk controller</a></h3>
-                        <p>A traffic-light state machine on an ATmega328P, with a debounced pedestrian button handled by
-                            an interrupt.</p>
-                        <p class="meta">C, ATmega328P, state machines</p>
-                    </div><canvas data-wave="2" aria-hidden="true"></canvas>
-                </article>
-                <article class="proj">
-                    <div>
-                        <h3><a href="#">Night light</a></h3>
-                        <p>A light sensor and a transistor that switch an LED on when the room gets dark.</p>
-                        <p class="meta">LDR, BC547, voltage divider</p>
-                    </div><canvas data-wave="3" aria-hidden="true"></canvas>
+                        <h3><a href="#">Sensor Circuit</a></h3>
+                        <p>In-Progress</p>
+                        <p class="meta">Series & Parallel Circuits, Ohm's Law & Kirchhoff's Laws</p>
+                    </div>
                 </article>
             </div>
             <div class="work project-panel" id="panel-web" role="tabpanel" aria-labelledby="tab-web" hidden>
                 <article class="proj">
                     <div>
-                        <h3><a href="https://github.com/LU347/blue-star-az">Blue Star Mothers</a></h3>
-                        <p>A volunteer and service-member web platform with account roles, inventory, and shipping
-                            workflows.</p>
-                        <p class="meta">Next.js, TypeScript, PostgreSQL, Prisma</p>
-                    </div>
-                </article>
-                <article class="proj">
-                    <div>
-                        <h3><a href="#">Chef RPG Map</a></h3>
+                        <h3><a href="https://github.com/LU347/chef-rpg-ingredients-map" target="_blank"
+                                rel="noopener noreferrer">Chef RPG Map</a></h3>
                         <p>An interactive map project built with a custom image overlay.</p>
                         <p class="meta">React, Vite, Leaflet</p>
                     </div>
                 </article>
                 <article class="proj">
                     <div>
-                        <h3><a href="#">Botanical Buddies</a></h3>
+                        <h3><a href="https://github.com/LU347/Botanical-Buddies" target="_blank"
+                                rel="noopener noreferrer">Botanical Buddies</a></h3>
                         <p>A collaborative web application project.</p>
                         <p class="meta">PHP, MySQL, Azure</p>
                     </div>
@@ -105,19 +84,29 @@
             <div class="work project-panel" id="panel-game" role="tabpanel" aria-labelledby="tab-game" hidden>
                 <article class="proj">
                     <div>
-                        <h3><a href="https://github.com/LU347/TTR-Beta">Teapot Tycoon</a></h3>
+                        <h3><a href="https://github.com/elisha-ong/All-Fangs-On-Deck" target="_blank"
+                                rel="noopener noreferrer">All Fangs On Deck</a></h3>
+                        <p>2D platformer game built with Unity.</p>
+                        <p class="meta">Unity, C#, Aseprite</p>
+                    </div>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="https://www.roblox.com/games/13462285447/Teapot-Tycoon-Remastered" target="_blank"
+                                rel="noopener noreferrer">Teapot Tycoon</a></h3>
                         <p>A Roblox tycoon game with player plots, shop systems, and persistent game data.</p>
                         <p class="meta">Roblox, Luau, DataStore</p>
                     </div>
                 </article>
                 <article class="proj">
                     <div>
-                        <h3><a href="#">Capy & Turtle</a></h3>
-                        <p>A Unity character-controller project with tag-team character switching and a third-person
-                            camera.</p>
-                        <p class="meta">Unity, C#</p>
+                        <h3><a href="https://github.com/elisha-ong/infinite-chase" target="_blank"
+                                rel="noopener noreferrer">Infinite Chase</a></h3>
+                        <p>A simple infinite-runner game created with Godot 4.</p>
+                        <p class="meta">Godot, GDScript</p>
                     </div>
                 </article>
+
             </div>
         </section>
 
