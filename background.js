@@ -35,7 +35,7 @@
             const light = clamp(ribbon * .92 + soft * .55 + shadow, 0, 1.2);
             const blue = clamp(light);
             const teal = clamp(ribbon * .45 + soft * .3);
-            const grain = (hash(i + Math.floor(t * 900), j + Math.floor(t * 700)) - .5) * 10;
+            const grain = 0; //(hash(i + Math.floor(t * 900), j + Math.floor(t * 700)) - .5) * 10;
             const idx = (j * w + i) * 4;
             d[idx] = clamp(10 + blue * 53 + teal * 10 + grain, 0, 255);
             d[idx + 1] = clamp(24 + blue * 95 + teal * 26 + grain, 0, 255);
