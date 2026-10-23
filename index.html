@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>Elisha Lucile Ong</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=Manrope:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Outfit:wght@400;500;600;700&family=Sora:wght@400;500;600;700&family=Syne:wght@400;500;600;700&family=Urbanist:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Elisha Lucile Ong</h1>
+            <p class="lede">Data annotation professional exploring hardware and robotics.</p>
+        </header>
+
+        <p class="about">
+            Been feeling lost for a while but it seems like I have a better idea of what I want to do now. <br>
+            I'm revisiting my past interest in electronics and looking for a career that keeps my mind engaged and challenged. <br>
+            If I resonate with you, feel free to reach out! I am open to mentorship and collaboration opportunities.
+        </p>
+
+        <section aria-labelledby="w">
+            <div class="projects-heading">
+                <h2 id="w">Projects</h2>
+                <div class="project-tabs" role="tablist" aria-label="Project categories">
+                    <button class="project-tab" type="button" role="tab" id="tab-electronics"
+                        aria-controls="panel-electronics" aria-selected="true" tabindex="0"><svg viewBox="0 0 24 24"
+                            aria-hidden="true">
+                            <rect x="4" y="8" width="16" height="12" rx="3" />
+                            <path d="M12 8V4m-2 0h4M9 14h.01M15 14h.01M9 17h6M2 12v4m20-4v4" />
+                        </svg><span>Electronics</span></button>
+                    <button class="project-tab" type="button" role="tab" id="tab-web" aria-controls="panel-web"
+                        aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="9" />
+                            <path d="M3 12h18M12 3c-3 3-4.5 6-4.5 9s1.5 6 4.5 9M12 3c3 3 4.5 6 4.5 9s-1.5 6-4.5 9" />
+                        </svg><span>Web Development</span></button>
+                    <button class="project-tab" type="button" role="tab" id="tab-game" aria-controls="panel-game"
+                        aria-selected="false" tabindex="-1"><svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M6.5 8h11a4 4 0 0 1 3.9 3.1l1 5a2.5 2.5 0 0 1-4 2.5L16 16H8l-2.4 2.6a2.5 2.5 0 0 1-4-2.5l1-5A4 4 0 0 1 6.5 8Z" />
+                            <path d="M7 11v5m-2.5-2.5h5M16 12h.01M19 14h.01" />
+                        </svg><span>Game Dev</span></button>
+                </div>
+            </div>
+            <div class="work project-panel" id="panel-electronics" role="tabpanel" aria-labelledby="tab-electronics">
+                <article style="display: none;" class="proj" id="proj-template">
+                    <div>
+                        <h3><a href="#">555 blinker</a></h3>
+                        <p>An astable oscillator with an adjustable duty cycle, checked against my own timing equations
+                            on an oscilloscope.</p>
+                        <p class="meta">NE555, breadboard, oscilloscope</p>
+                    </div><canvas data-wave="0" aria-hidden="true"></canvas>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="#">Sensor Circuit</a></h3>
+                        <p>In-Progress</p>
+                        <p class="meta">Series & Parallel Circuits, Ohm's Law & Kirchhoff's Laws</p>
+                    </div>
+                </article>
+            </div>
+            <div class="work project-panel" id="panel-web" role="tabpanel" aria-labelledby="tab-web" hidden>
+                <article class="proj">
+                    <div>
+                        <h3><a href="https://github.com/LU347/chef-rpg-ingredients-map" target="_blank"
+                                rel="noopener noreferrer">Chef RPG Map</a></h3>
+                        <p>An interactive map project built with a custom image overlay.</p>
+                        <p class="meta">React, Vite, Leaflet</p>
+                    </div>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="https://github.com/LU347/Botanical-Buddies" target="_blank"
+                                rel="noopener noreferrer">Botanical Buddies</a></h3>
+                        <p>A collaborative web application project.</p>
+                        <p class="meta">PHP, MySQL, Azure</p>
+                    </div>
+                </article>
+            </div>
+            <div class="work project-panel" id="panel-game" role="tabpanel" aria-labelledby="tab-game" hidden>
+                <article class="proj">
+                    <div>
+                        <h3><a href="https://github.com/elisha-ong/All-Fangs-On-Deck" target="_blank"
+                                rel="noopener noreferrer">All Fangs On Deck</a></h3>
+                        <p>2D platformer game built with Unity.</p>
+                        <p class="meta">Unity, C#, Aseprite</p>
+                    </div>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="https://www.roblox.com/games/13462285447/Teapot-Tycoon-Remastered" target="_blank"
+                                rel="noopener noreferrer">Teapot Tycoon</a></h3>
+                        <p>A Roblox tycoon game with player plots, shop systems, and persistent game data.</p>
+                        <p class="meta">Roblox, Luau, DataStore</p>
+                    </div>
+                </article>
+                <article class="proj">
+                    <div>
+                        <h3><a href="https://github.com/elisha-ong/infinite-chase" target="_blank"
+                                rel="noopener noreferrer">Infinite Chase</a></h3>
+                        <p>A simple infinite-runner game created with Godot 4.</p>
+                        <p class="meta">Godot, GDScript</p>
+                    </div>
+                </article>
+
+            </div>
+        </section>
+
+        <footer>
+            <h2>Contact</h2>
+            <p>
+                <a href="https://github.com/elisha-ong" target="_blank" rel="noopener noreferrer">GitHub</a>
+                <a href="https://linkedin.com/in/elishalucile-ong" target="_blank"
+                    rel="noopener noreferrer">LinkedIn</a>
+            </p>
+        </footer>
+    </main>
+    <script src="background.js"></script>
+</body>
+
+</html>
